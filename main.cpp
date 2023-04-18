@@ -61,7 +61,6 @@ void add_obstacles( int start, int end) //có bắt đầu và có kết thú, �
 		{
 			int tempx = mx - start_of_maxtrix_x ;
 		 	int tempy = my - start_of_maxtrix_y ;
-			
 			if(tempx >= gap_lines)
 			{
 				tempx = tempx / gap_lines;
@@ -77,11 +76,10 @@ void add_obstacles( int start, int end) //có bắt đầu và có kết thú, �
 				tempy = tempy / gap_lines;
 				tempy = (tempy* gap_lines) + start_of_maxtrix_y;
 		    }
-		     else
-		     {
-		     	tempy = 10;
-			 }	
-		
+			else
+			{
+			tempy = 10;
+			}	
 			if(tempx < 770 && tempy < 770)
 			{  
 			    setfillstyle(1,15); // được sử dụng để thay đổi màu sắc và kiểu kiểu được sử dụng // 10 cho màu xanh lá cây
@@ -164,7 +162,6 @@ bool dijkstra(int start, int ends, int num_of_nodes)
 			{
 				if((itr1->first) > (parent_weight + 1))
 				{
-
 					minheap.erase(itr1);
 					minheap.insert({parent_weight + 1, adjacent_vertices[i]});
 					parent_track[adjacent_vertices[i]] = parent;
@@ -188,11 +185,6 @@ bool dijkstra(int start, int ends, int num_of_nodes)
 		}
 		path.erase(path.end()-1);
 		std::reverse(path.begin(),path.end());
-		/*for(int i = 0 ; i < path.size() ; i++)
-		{
-			cout<<path[i]<<"->";
-		}
-		cout<<endl;*/	
 		path_color(path);
 		return true;
   	}
@@ -215,9 +207,7 @@ void make_graph(int screen_width, int screen_height ,int gap_lines)
 		line(10,i,screen_width,i);	
 	}	
 }
-//logic để tạo danh sách tính từ
-//sử dụng danh sách kề nó vì nó là ma trận khoảng trắng
-//ít nhất 8 nút liền kề với một nút cụ thể
+//logic để tạo danh sách tính từ sử dụng danh sách kề nó vì nó là ma trận khoảng trắng ít nhất 8 nút liền kề với một nút cụ thể
 //không liên quan để biểu diễn nó trong ma trận kề becuase cho mỗi nút ít nhất (n ^ 2 - 8) không gian sẽ bị lãng phí.
 void make_adjacency_list(int num_of_rows,int num_of_columns)
 {
@@ -226,7 +216,6 @@ void make_adjacency_list(int num_of_rows,int num_of_columns)
 	{
 		for(int j = 0 ; j < num_of_columns ; j++)
 		{	
-		
 			int temp = 1;
 			temp = (num_of_columns * i) + j;
 			if((i-1) >= 0)
@@ -289,23 +278,6 @@ void make_adjacency_list(int num_of_rows,int num_of_columns)
 		}
 	}
 }	
-/*	for(int i = 0 ; i < 1444 ; i++)
-	{
-	  /*	for(int j = 0; j < adja[i].size() ;j++)
-		{
-			cout<<adja[i][j]<<" ";
-			//cout<<adja[i].size();
-		}
-		cout << "\n Adjacency list of vertex "
-             << i << "\n head "; 
-        for (vector<int>::iterator itr = adja[i].begin(); itr < adja[i].end() ; itr++) 
-           cout << "-> " << (*itr); 
-		cout<<endl;
-	}
-	
-	
-}
-}*/
 //nó chuyển đổi khoảng cách được tính toán thành chuỗi để có thể hiển thị trên màn hình
 string distance_to_string(int distance)
 {
